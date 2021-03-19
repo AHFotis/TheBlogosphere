@@ -1,6 +1,10 @@
-{{#each blogs}}
+
 <div class="picture">
-  <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold"> {{title}} </h1>
-  <h2>{{content}}</h2>
+  <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold"> Current Blogs </h1>
+  {{#each blogs}}
+  <h2>{{title}}</h2>
+  <p>{{content}}</p>
+  <hr>
+  <br>
+  {{/each}}
 </div>
-{{/each}}
