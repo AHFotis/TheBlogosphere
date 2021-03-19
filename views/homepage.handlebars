@@ -3,6 +3,9 @@
   <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold"> Current Blogs </h1>
   {{#each blogs}}
   <h2>{{title}}</h2>
+  {{#if loggedIn}}
+  <p>{{format_date created_at}}</p>
+  {{/if}}
   <p>{{content}}</p>
   <hr>
   <br>
