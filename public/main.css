@@ -1,0 +1,61 @@
+body {
+    background-image: url("./images/vintage-typewriter.jpg");
+    background-size: cover; 
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+    font-family: 'Special Elite', cursive;
+}
+
+nav {
+    /* background-color: rgb(124, 57, 16); */
+    background-image: linear-gradient(to bottom right, rgb(49, 25, 25), rgba(94, 39, 39, 0.743));
+    margin: 0;
+    width: 100%;
+    height: 150px;
+    
+}
+
+a {
+ color: white;
+ text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin: 0 auto;
+}
+
+.links {
+    padding: 30px;
+    font-size: 25px;
+}
+
+.picture {
+margin: 0 auto;
+margin-top: 100px;
+  width: 50%;
+  padding: 10px;
+  justify-self: center;
+  background-color: rgb(250, 244, 219);
+  border-radius: 25px;
+  border: 5px solid rgb(49, 25, 25);
+   
+}
+
+footer {
+    position: fixed;
+    height: 50px;
+    background-image: linear-gradient(to bottom left, rgb(49, 25, 25), rgba(94, 39, 39, 0.743));
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
