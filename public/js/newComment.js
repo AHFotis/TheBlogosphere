@@ -12,7 +12,7 @@ const commentFormHandler = async (event) => {
   
     if (comment) {
         //WHY WON'T YOU WORK?!?!?!
-      const response = await fetch('/api/blogs/id', {
+      const response = await fetch("/api/blogs/:id", {
         method: 'POST',
         body: JSON.stringify({ comment, blog_id }),
         headers: { 'Content-Type': 'application/json' },
