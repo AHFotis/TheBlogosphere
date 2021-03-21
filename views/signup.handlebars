@@ -1,16 +1,22 @@
 <div class="signIn">
   <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold;">Create an Account</h1>
-  <form class="form login-form">
+  <form class="form signup-form">
+    <div class="form-group">
+    <label for="user-login" class="login">enter username:</label>
+    <br>
+    <input class="form-input newInput" type="text" id="uName-signup" />
+  </div>
+  <br>
   <div class="form-group">
     <label for="email-login" class="login">enter email:</label>
     <br>
-    <input class="form-input newInput" type="text" id="email-signUp" />
+    <input class="form-input newInput" type="text" id="email-signup" />
   </div>
   <br>
   <div class="form-group">
     <label for="password-login" class="login"> choose password:</label>
     <br>
-    <input class="form-input newInput" type="password" id="password-signUp" />
+    <input class="form-input newInput" type="password" id="password-signup" />
   </div>
   <br>
   <div class="form-group">
@@ -18,3 +24,5 @@
   </div>
 </form>
 </div>
+
+<script src="/js/signup.js"></script>

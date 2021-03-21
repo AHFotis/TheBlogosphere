@@ -1,13 +1,22 @@
 
 <div class="home">
   <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold"> Current Blogs </h1>
+ {{#if loggedIn}}
   {{#each blogs}}
+  <p>{{format_date createdAt}}</p>
   <h2>{{title}}</h2>
-  {{#if loggedIn}}
-  <p>{{format_date created_at}}</p>
-  {{/if}}
   <p>{{content}}</p>
   <hr>
   <br>
   {{/each}}
+{{/if}}
+{{#unless loggedIn}}
+  {{#each blogs}}
+  <h2>{{title}}</h2>
+  <p>{{content}}</p>
+  <hr>
+  <br>
+  {{/each}}
+{{/unless}}
 </div>
+
