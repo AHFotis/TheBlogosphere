@@ -60,3 +60,10 @@ router.post('/login', async (req, res) => {
     }
   });
   module.exports = router;
+
+  // .cookie('themeColor', newColor,
+  //     {
+  //       maxAge: 90000,
+  //       httpOnly: true
+  //     })
+  //   .json({ message: 'Theme Changed' })
