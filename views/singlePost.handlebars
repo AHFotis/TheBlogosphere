@@ -2,6 +2,13 @@
  <h1>{{blog.title}}</h1>
  <h2>{{format_date blog.createdAt}} | Written by {{blog.user.name}}</h2>
  <p>{{blog.content}}</p>
+ <form class="comment-form">
+<label for="comments">Leave a comment:</label>
+<br>
+<textarea id="comment" name="comment" rows="4" cols="50">
+Enter comment here.
+</textarea> <button class="commentBtn" type="submit">Save Comment</button>
+</form>
 </div>
 
 {{#each blog.comments as |comment|}}
@@ -11,3 +18,5 @@
     <p>{{format_date comment.createdAt}}</p>
 </div>
 {{/each}}
+
+<script src="/js/newComment.js"></script>
