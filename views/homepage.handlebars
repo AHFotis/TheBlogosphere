@@ -4,7 +4,7 @@
 
 {{#if loggedIn}}
 {{#each blogs}}
-<a href="/post/{{id}}" class="blogLink">
+<a href="/api/blogs/{{id}}" class="blogLink">
 <div class="post">
 <p>{{format_date createdAt}}</p>
 <h2>{{title}}</h2>

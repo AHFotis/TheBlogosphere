@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth')
 router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
-      order: [['createdAt', 'ASC']],
+     
     })
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
     res.render('homepage', {
@@ -32,6 +32,10 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
   res.render('signup');
 });
 
