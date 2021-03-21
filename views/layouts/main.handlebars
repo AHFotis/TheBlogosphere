@@ -20,16 +20,16 @@
     <nav>
       <!-- Conditionally render login or logout links -->
       <div class="links">
-        <a href="/">Home</a> |
-        <a href="/dash">Dashboard</a> |
+        <a href="/" class="navLink">Home</a> |
+        <a href="/dash" class="navLink">Dashboard</a> |
         {{#if loggedIn}}
-        <a href="/" id="logout">Logout</a> |
+        <a href="/" id="logout" class="navLink">Logout</a> |
         {{else}}
-        <a href="/login">Login</a> |
+        <a href="/login" class="navLink">Login</a> |
         {{/if}}
       </div>
       <h1>
-        <a href="/">The Blogosphere</a>
+        <a href="/" class="navLink">The Blogosphere</a>
       </h1>
 
     </nav>
