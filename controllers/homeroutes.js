@@ -2,10 +2,11 @@ const router = require('express').Router();
 const { Blog, User, Comments } = require('../models')
 const withAuth = require('../utils/auth')
 
+//Render homepage
 router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
-     
+
     })
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
     res.render('homepage', {
@@ -17,12 +18,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// router.get('/dash', withAuth, (req, res) => {
-//   res.render('dash', {
-//     loggedIn: req.session.logged_in
-//   });
-// });
-
+//render login page
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
@@ -31,6 +27,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//render signup page
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
@@ -39,50 +36,61 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+//render logout page
 router.get('/logout', (req, res) => {
   res.render('logout', {
     loggedIn: req.session.logged_in
   });
 });
 
+//render dashboard
 router.get('/dash', withAuth, async (req, res) => {
   try {
-      const blogData = await Blog.findAll({
-          where: {
-              user_id: req.session.user_id,
-          },
-          attributes: ["id", "content", "title", "createdAt"],
-          // include: [
-          // { model: User, attributes: ["name"] },
-          // { model: Comments, attributes: ["id", "text", "user_id", "blog_id"],
-          //     include: {
-          //         model: User, attributes: ['name'],
-          //     }
-          // }]
-      })
-      
-      console.log("TEST" + blogData)
-      if (!blogData) {
-          res.status(404).json({
-              message: "No post found with this id"
-          });
-          return;
-      }
+    const blogData = await Blog.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      attributes: ["id", "content", "title", "createdAt"],
+    })
 
-      const blogs = blogData.map((blog) => blog.get({ plain: true }));
-     console.log(blogs)
+    console.log("TEST" + blogData)
+    if (!blogData) {
+      res.status(404).json({
+        message: "No post found with this id"
+      });
+      return;
+    }
 
-      res.render('dash', {
-          blogs,
-          loggedIn: req.session.logged_in
-      })
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    console.log(blogs)
+
+    res.render('dash', {
+      blogs,
+      loggedIn: req.session.logged_in
+    })
 
   } catch (err) {
-      res.status(500).json(err)
+    res.status(500).json(err)
   }
 })
 
-router.get("/newblog", withAuth, async (req, res) => {
+//post new blog
+router.post("/dash/newblog", async (req, res) => {
+  const user_id = req.session.user_id
+  try {
+      const newBlog = await Blog.create({
+          title: req.body.title,
+          content: req.body.content,
+          user_id: user_id
+      });
+      res.status(200).json(newBlog);
+  } catch (err) {
+      res.status(400).json(err);
+  }
+})
+
+//render new blog page
+router.get("/dash/newblog", withAuth, async (req, res) => {
   if (!req.session.logged_in) {
     res.redirect('/');
     return;

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User, Blog, Comments } = require('../../models')
-const { Sequelize } = require('sequelize');
 
 router.get("/:id", async (req, res) => {
     try {
@@ -47,12 +46,13 @@ router.post("/:id", async (req, res) => {
             blog_id: req.body.blog_id,
             user_id: user_id
         });
-        console.log("NEW COMMENT" + newComment)
         res.status(200).json(newComment);
     } catch (err) {
         res.status(400).json(err);
     }
 })
+
+
 
 
 

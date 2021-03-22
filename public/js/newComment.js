@@ -7,7 +7,7 @@ const commentFormHandler = async (event) => {
         window.location.toString().split('/').length - 1
     ];
 
-    const user_id = localStorage.getItem('user')
+    const user_id = "user"
   
     if (text) {
       const response = await fetch('/api/blogs/:id', {
@@ -18,7 +18,7 @@ const commentFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.reload;
+        document.location.reload();
       } else {
         alert(response.statusText);
       }
