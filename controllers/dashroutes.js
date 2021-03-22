@@ -87,6 +87,61 @@ router.get('/', withAuth, async (req, res) => {
     res.render('newblog');
   })
 
+  router.get("/update/:id", withAuth, async (req, res) => {
+    try {
+      const blogData = await Blog.findOne({
+        where: {
+          id: req.params.id,
+        },
+        attributes: ["id", "content", "title", "createdAt"],
+      })
+  
+      if (!blogData) {
+        res.status(404).json({
+          message: "No post found with this id"
+        });
+        return;
+      }
+  
+      const blog = blogData.get({ plain: true });
+      console.log(blog)
+  
+      res.render('update', {
+        blog,
+        loggedIn: req.session.logged_in
+      })
+  
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  })
+
+  //update blog NOT WORKING YET
+  // router.put("/:id", withAuth, async (req, res) => {
+  //   try {
+  //     const updateBlog = await Blog.update({
+  //       title: req.body.title,
+  //       content: req.body.content,
+  //     }, {
+  //        where: {
+  //           id: req.params.id
+  //        }
+  //     });
+
+  //     const update = updateBlog.get({ plain: true });
+      
+
+  //     if (!update) {
+  //       res.status(404).json({ message: 'No blog found with this id!' });
+  //       return;
+  //     }
+  //     res.status(200).json(update);
+  // } catch (err) {
+  //     res.status(400).json(err);
+  // }
+  // })
+
+  //delete blog
   router.delete("/:id", withAuth, async (req, res) => {
     try {
       const delBlog = await Blog.destroy({
