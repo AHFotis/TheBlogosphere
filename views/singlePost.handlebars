@@ -14,9 +14,8 @@ Enter comment here.
 {{#each blog.comments as |comment|}}
 <div class="home">
     <h3>Comment by {{comment.user.name}}</h3>
-    <p>{{format_date comment.createdAt}}</p>
     <p>{{comment.text}}</p>
-    
+    <p>{{format_date comment.createdAt}}</p>
 </div>
 {{/each}}
 
