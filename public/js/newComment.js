@@ -3,16 +3,17 @@ const commentFormHandler = async (event) => {
   
     const text = document.querySelector('#comment').value.trim();
 
-    // const blog_id = window.location.toString().split('/')[
-    //     window.location.toString().split('/').length - 1
-    // ];
+    const blog_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+
+    const user_id = localStorage.getItem('user')
   
     if (text) {
-        //WHY WON'T YOU WORK?!?!?!
-      const response = await fetch('/api/blogs/', {
+      const response = await fetch('/api/blogs/:id', {
         method: 'POST',
         body: JSON.stringify({ 
-            text }),
+            text, blog_id, user_id }),
         headers: { 'Content-Type': 'application/json' },
       });
   

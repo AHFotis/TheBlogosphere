@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Blog, Comments } = require('../../models')
+const { Sequelize } = require('sequelize');
 
 router.get("/:id", async (req, res) => {
     try {
@@ -10,7 +11,7 @@ router.get("/:id", async (req, res) => {
             attributes: ["id", "content", "title", "createdAt"],
             include: [
             { model: User, attributes: ["name"] },
-            { model: Comments, attributes: ["id", "text", "user_id", "blog_id"],
+            { model: Comments, attributes: ["id", "text", "user_id", "blog_id", "createdAt"],
                 include: {
                     model: User, attributes: ['name'],
                 }
@@ -38,9 +39,14 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
+    const user_id = req.session.user_id
     try {
-        const newComment = await Comments.create(req.body);
+        const newComment = await Comments.create({
+            text: req.body.text,
+            blog_id: req.body.blog_id,
+            user_id: user_id
+        });
         console.log("NEW COMMENT" + newComment)
         res.status(200).json(newComment);
     } catch (err) {
@@ -48,17 +54,6 @@ router.post("/", async (req, res) => {
     }
 })
 
-
-
-router.post("/", async (req, res) => {
-    try {
-        const newComment = await Comments.create(req.body);
-        console.log("NEW COMMENT" + newComment)
-        res.status(200).json(newComment);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-})
 
 
 module.exports = router;
