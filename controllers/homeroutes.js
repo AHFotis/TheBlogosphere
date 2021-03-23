@@ -6,7 +6,9 @@ const withAuth = require('../utils/auth')
 router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
-
+      order: [
+        ['createdAt', 'DESC'],
+    ],
     })
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
     res.render('homepage', {

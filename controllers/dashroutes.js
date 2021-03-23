@@ -10,6 +10,9 @@ router.get('/', withAuth, async (req, res) => {
           user_id: req.session.user_id,
         },
         attributes: ["id", "content", "title", "createdAt"],
+        order: [
+          ['createdAt', 'DESC'],
+      ],
       })
   
       console.log("TEST" + blogData)
@@ -33,61 +36,8 @@ router.get('/', withAuth, async (req, res) => {
     }
   })
   
-  router.get('/:id', withAuth, async (req, res) => {
-    try {
-      const blogData = await Blog.findOne({
-        where: {
-          id: req.params.id,
-        },
-        attributes: ["id", "content", "title", "createdAt"],
-      })
-  
-      if (!blogData) {
-        res.status(404).json({
-          message: "No post found with this id"
-        });
-        return;
-      }
-  
-      const blog = blogData.get({ plain: true });
-      console.log(blog)
-  
-      res.render('update', {
-        blog,
-        loggedIn: req.session.logged_in
-      })
-  
-    } catch (err) {
-      res.status(500).json(err)
-    }
-  })
-
-  
-  //post new blog
-  router.post("/newblog", async (req, res) => {
-    const user_id = req.session.user_id
-    try {
-        const newBlog = await Blog.create({
-            title: req.body.title,
-            content: req.body.content,
-            user_id: user_id
-        });
-        res.status(200).json(newBlog);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-  })
-  
-  //render new blog page
-  router.get("/newblog", withAuth, async (req, res) => {
-    if (!req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-    res.render('newblog');
-  })
-
-  // router.get("/update:id", withAuth, async (req, res) => {
+  //Not sure what this is doing
+  // router.get('/:id', withAuth, async (req, res) => {
   //   try {
   //     const blogData = await Blog.findOne({
   //       where: {
@@ -116,7 +66,34 @@ router.get('/', withAuth, async (req, res) => {
   //   }
   // })
 
-  //update blog NOT WORKING YET
+  
+  //post new blog
+  router.post("/newblog", async (req, res) => {
+    const user_id = req.session.user_id
+    try {
+        const newBlog = await Blog.create({
+            title: req.body.title,
+            content: req.body.content,
+            user_id: user_id
+        });
+        res.status(200).json(newBlog);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+  })
+  
+  //render new blog page
+  router.get("/newblog", withAuth, async (req, res) => {
+    if (!req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
+    res.render('newblog', {
+    loggedIn: req.session.logged_in
+  });
+  })
+
+  //update blog
   router.put("/:id", async (req, res) => {
     const user_id = req.session.user_id
     try {
@@ -128,9 +105,6 @@ router.get('/', withAuth, async (req, res) => {
             id: req.params.id
          }
       });
-
-      // const update = updateBlog.get({ plain: true });
-      
 
       if (!updateBlog) {
         res.status(404).json({ message: 'No blog found with this id!' });
