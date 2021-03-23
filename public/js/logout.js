@@ -5,8 +5,7 @@ const logout = async () => {
     });
   
     if (response.ok) {
-      document.location.replace('/');
-      alert("You have successfuly logged out. See ya later, blogorino!");
+      document.location.replace('/logout');
     } else {
       alert(response.statusText);
     }

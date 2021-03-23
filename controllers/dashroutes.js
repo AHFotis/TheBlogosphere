@@ -35,36 +35,47 @@ router.get('/', withAuth, async (req, res) => {
       res.status(500).json(err)
     }
   })
+
+    //render new blog page
+    router.get("/newblog", withAuth, async (req, res) => {
+      if (!req.session.logged_in) {
+        res.redirect('/');
+        return;
+      }
+      res.render('newblog', {
+      loggedIn: req.session.logged_in
+    });
+    })
   
   //Not sure what this is doing
-  // router.get('/:id', withAuth, async (req, res) => {
-  //   try {
-  //     const blogData = await Blog.findOne({
-  //       where: {
-  //         id: req.params.id,
-  //       },
-  //       attributes: ["id", "content", "title", "createdAt"],
-  //     })
+  router.get('/:id', withAuth, async (req, res) => {
+    try {
+      const blogData = await Blog.findOne({
+        where: {
+          id: req.params.id,
+        },
+        attributes: ["id", "content", "title", "createdAt"],
+      })
   
-  //     if (!blogData) {
-  //       res.status(404).json({
-  //         message: "No post found with this id"
-  //       });
-  //       return;
-  //     }
+      if (!blogData) {
+        res.status(404).json({
+          message: "No post found with this id"
+        });
+        return;
+      }
   
-  //     const blog = blogData.get({ plain: true });
-  //     console.log(blog)
+      const blog = blogData.get({ plain: true });
+      console.log(blog)
   
-  //     res.render('update', {
-  //       blog,
-  //       loggedIn: req.session.logged_in
-  //     })
+      res.render('update', {
+        blog,
+        loggedIn: req.session.logged_in
+      })
   
-  //   } catch (err) {
-  //     res.status(500).json(err)
-  //   }
-  // })
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  })
 
   
   //post new blog
@@ -82,17 +93,6 @@ router.get('/', withAuth, async (req, res) => {
     }
   })
   
-  //render new blog page
-  router.get("/newblog", withAuth, async (req, res) => {
-    if (!req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-    res.render('newblog', {
-    loggedIn: req.session.logged_in
-  });
-  })
-
   //update blog
   router.put("/:id", async (req, res) => {
     const user_id = req.session.user_id
