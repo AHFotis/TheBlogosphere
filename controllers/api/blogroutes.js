@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Blog, Comments } = require('../../models')
 
+//rendering blog with full info
 router.get("/:id", async (req, res) => {
     try {
         const blogData = await Blog.findOne({
@@ -9,14 +10,15 @@ router.get("/:id", async (req, res) => {
             },
             attributes: ["id", "content", "title", "createdAt"],
             include: [
-            { model: User, attributes: ["name"] },
-            { model: Comments, attributes: ["id", "text", "user_id", "blog_id", "createdAt"],
-                include: {
-                    model: User, attributes: ['name'],
-                }
-            }]
+                { model: User, attributes: ["name"] },
+                {
+                    model: Comments, attributes: ["id", "text", "user_id", "blog_id", "createdAt"],
+                    include: {
+                        model: User, attributes: ['name'],
+                    }
+                }]
         })
-        
+
         console.log("TEST" + blogData)
         if (!blogData) {
             res.status(404).json({
@@ -38,6 +40,7 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+//adds comment to blog
 router.post("/:id", async (req, res) => {
     const user_id = req.session.user_id
     try {
@@ -51,9 +54,5 @@ router.post("/:id", async (req, res) => {
         res.status(400).json(err);
     }
 })
-
-
-
-
 
 module.exports = router;
