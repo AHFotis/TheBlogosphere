@@ -5,11 +5,11 @@
 {{#if loggedIn}}
 {{#each blogs}}
 <a href="/api/blogs/{{id}}" class="blogLink">
-<div class="post">
-<p>{{format_date createdAt}}</p>
-<h2>{{title}}</h2>
-<p>{{content}}</p>
-</div>
+  <div class="post">
+    <p>{{format_date createdAt}}</p>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+  </div>
 </a>
 {{/each}}
 {{/if}}
@@ -17,8 +17,8 @@
 {{#unless loggedIn}}
 {{#each blogs}}
 <div class="post">
-<h2>{{title}}</h2>
-<p>{{content}}</p>
+  <h2>{{title}}</h2>
+  <p>{{content}}</p>
 </div>
 {{/each}}
 {{/unless}}

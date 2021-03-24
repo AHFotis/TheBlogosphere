@@ -1,34 +1,26 @@
 <div class="home">
-  <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold">Update Blog</h1>
-  {{!-- <div class="form-group">
-    <label for="updateblog" class="update">update title:</label>
-    <br>
-    <textarea id="updateBlogTitle" name="updateTitle" rows="1" cols="60">{{blog.title}}</textarea>
-  </div>
-  <div class="form-group">
-    <label for="updateblog">update your blog:</label>
-    <br>
-    <textarea id="updateBlogBody" name="updateBody" rows="10" cols="60">{{blog.content}}</textarea>
-  </div>
 
-  <form class="update">
-    <button class="updateBtn" type="submit">Update Post</button>
-  </form> --}}
+  <h1 style="color:rgba(94, 39, 39, 0.743); font-weight:bold">Update Blog</h1>
 
   <form class="edit-post-form">
+
     <div class="post-title-section">
       <label for="post-title">update title:</label>
       <br>
       <input type="text" name="post-title" id="post-title" value="{{blog.title}}" />
     </div>
+
     <div class="post-content">
       <label for="post-content">update content</label>
       <br>
       <textarea class="entry-field" id="post-content" name="post-content">{{blog.content}}</textarea>
     </div>
+
     <button type="submit">Update post</button>
-     <button type="button" class="delete-post-btn">Delete post</button>
+    <button type="button" class="delete-post-btn">Delete post</button>
+
   </form>
+  
 </div>
 
 <script src="/js/update.js"></script>
