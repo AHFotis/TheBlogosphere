@@ -15,7 +15,7 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/dash');
       } else {
-        alert(response.statusText);
+        alert("Please type in three vaild entries.");
       }
     }
   };

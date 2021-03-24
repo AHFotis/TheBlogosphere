@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Blogosphere</title>
   <link rel="stylesheet" href="/css/main.css">
-  {{!--
-  <link rel="stylesheet" href="../../public/css/jass.css"> --}}
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
@@ -20,16 +18,16 @@
     <nav>
       <!-- Conditionally render login or logout links -->
       <div class="links">
-        <a href="/" class="navLink">Home</a> |
-        <a href="/dash" class="navLink">Dashboard</a> |
+        <a href="/" class="navLink">Home | </a>
+        <a href="/dash" class="navLink">Dashboard | </a>
         {{#if loggedIn}}
-        <a href="/" id="logout" class="navLink">Logout</a> |
+        <a href="/" id="logout" class="navLink">Logout</a>
         {{else}}
-        <a href="/login" class="navLink">Login</a> |
+        <a href="/login" class="navLink">Login</a>
         {{/if}}
       </div>
 
-      <h1>
+      <h1 class="title">
         <a href="/" class="navLink">The Blogosphere</a>
       </h1>
 
