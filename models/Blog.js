@@ -18,7 +18,7 @@ Blog.init({
         }
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(4000),
         allowNull: false,
         validate: {
             len: [1]

@@ -1,6 +1,6 @@
 <div class="home">
 
-  <h1>Write Your New Blog</h1>
+  <h1 class="title" style="color:rgba(94, 39, 39, 0.743); font-weight:bold">Write Your New Blog</h1>
 
   <form class="blog-form">
 
@@ -10,14 +10,16 @@
       <input class="form-input newInput" type="text" id="newblogTitle" />
     </div>
 
+    <br>
+
     <div class="form-group">
       <label for="blogBody">write your blog:</label>
       <br>
-      <textarea id="blogBody" name="blogBody" rows="10" cols="60"></textarea>
+      <textarea class="textarea" id="blogBody" name="blogBody" maxlength="1000"></textarea>
     </div>
 
     <div class="form-group">
-      <button class="newblogBtn" type="submit">Save Blog</button>
+      <button class="loginBtn" type="submit">Save Blog</button>
     </div>
     {{!-- added these --}}
   </form>
