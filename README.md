@@ -21,7 +21,7 @@ A blogging website allowing users to write, update, and delete personal blogs. B
   
 ## Reference
 
-Click [here](https://the-blogosphere.herokuapp.com/) to view the live application on Heroku.
+Click [here](https://theblogosphere-production.up.railway.app/) to view the live application on Railway.
 
 Screenshot of homepage
   ![Postman Shot](Assets/sample.png)
