@@ -194,8 +194,8 @@ label {
 
 /* media queries */
 @media screen and (max-width: 520px) {
-    nav {
-        height: 200px;
+    .links {
+        padding-bottom: 30px
     }
 
     .title, .home {
