@@ -1,4 +1,15 @@
 /* Full styling */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+}
+
+.main-title {
+    padding-bottom: 20px;
+}
+
 body {
     background-image: url("../images/vintage-typewriter.jpg");
     background-size: cover; 
@@ -11,7 +22,6 @@ nav {
     background-image: linear-gradient(to bottom right, rgb(49, 25, 25), rgba(94, 39, 39, 0.743));
     margin: 0;
     width: 100%;
-    height: 150px;
 }
 
 .navLink {
@@ -25,13 +35,13 @@ nav {
 
 h1 {
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     margin: 0 auto;
 }
 
 .links {
-    padding: 30px;
-    font-size: 25px;
+    padding-top: 30px;
+    font-size: 15px;
 }
 
 footer {
@@ -52,7 +62,7 @@ footer {
 
 .home {
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 150px;
     width: 50%;
     padding: 10px;
     justify-content: center;
@@ -60,6 +70,10 @@ footer {
     border-radius: 25px;
     border: 5px solid rgb(49, 25, 25);
    
+}
+
+.main-post {
+    margin-top: 150px !important;
 }
 
 .post {
@@ -91,7 +105,7 @@ footer {
 
 .signIn {
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 150px;
     width: 40%;
     padding: 10px;
     background-color: rgb(250, 244, 219);
@@ -140,12 +154,12 @@ footer {
 .signupLink {
     margin: 0 auto;
     margin-top: 20px;
-      width: 40%;
-      padding: 10px;
-      background-color: rgb(250, 244, 219);
-      border-radius: 25px;
-      border: 5px solid rgb(49, 25, 25);
-      text-align: center;
+    width: 40%;
+    padding: 10px;
+    background-color: rgb(250, 244, 219);
+    border-radius: 25px;
+    border: 5px solid rgb(49, 25, 25);
+    text-align: center;
 }
 
 /* small styling */
